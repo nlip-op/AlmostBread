@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kestrel Island Ferry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EAF2F4;--ink:#0A1A26;--sea:#0F2F4A;--signal:#F2C230;--buoy:#D8452E;--card:#fff;--muted:#4b6272;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#08141D;--ink:#EAF2F4;--card:#0F2230;--muted:#9bb2c1}}
+:root[data-theme="dark"]{--bg:#08141D;--ink:#EAF2F4;--card:#0F2230;--muted:#9bb2c1}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.6 "Public Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.05;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--buoy);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 1.25rem}
+nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0}
+nav b{font:800 1.3rem "Bricolage Grotesque",sans-serif}
+nav div{display:flex;gap:1.5rem}
+nav a{text-decoration:none;font-weight:600}
+nav a:hover{text-decoration:underline}
+.hero{background:var(--sea);color:#EAF2F4;padding:3rem 0 3.5rem}
+.hero h1{font-size:clamp(2.6rem,8vw,5.5rem);font-weight:800;max-width:11ch}
+.hero p{max-width:46ch;color:#b8cdd9;margin:1.25rem 0 2rem}
+.board{background:#050d13;border-radius:6px;padding:1rem 1.25rem;font-variant-numeric:tabular-nums;overflow-x:auto}
+.board h2{font-size:1rem;color:var(--signal);font-weight:500;margin-bottom:.5rem}
+.row{display:grid;grid-template-columns:5rem 1fr 7rem;gap:1rem;padding:.6rem 0;border-top:1px solid #1d3547;color:#EAF2F4;min-width:420px}
+.row .t{color:var(--signal);font-weight:600}
+.row .m{text-align:right;color:#b8cdd9}
+.row .m.soon{color:var(--buoy);font-weight:600}
+section{padding:3.5rem 0}
+section h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:1.5rem}
+.routes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+.route{background:var(--card);padding:1.5rem;border-left:8px solid var(--signal)}
+.route:nth-child(2){border-color:var(--buoy)}
+.route:nth-child(3){border-color:var(--sea)}
+.route h3{font-size:1.4rem;margin-bottom:.4rem}
+.route p{margin:0;color:var(--muted)}
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:480px;background:var(--card)}
+th,td{padding:.8rem 1rem;text-align:left;border-bottom:1px solid color-mix(in srgb,var(--ink) 15%,transparent)}
+th{font-family:"Bricolage Grotesque",sans-serif}
+.btn{display:inline-block;background:var(--signal);color:#0A1A26;font-weight:600;padding:.85rem 1.4rem;text-decoration:none;border-radius:4px}
+.btn:hover{background:#ffd451}
+footer{background:var(--sea);color:#b8cdd9;padding:2.5rem 0;font-size:.95rem}
+@media (prefers-reduced-motion:no-preference){.row.live{animation:blink 1.2s steps(2) 2}}
+@keyframes blink{50%{background:#12303f}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <nav>
+      <b>Kestrel Island Ferry</b>
+      <div><a href="#routes">Routes</a><a href="#fares">Fares</a><a href="#contact">Contact</a></div>
+    </nav>
+    <h1>Mainland to island in 35 minutes.</h1>
+    <p>Daily sailings between Port Marlow and Kestrel Island. Bring a bike, a dog, or a week of groceries.</p>
+    <div class="board" aria-live="polite">
+      <h2>Next departures from Port Marlow</h2>
+      <div id="board"></div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="routes"><div class="wrap">
+  <h2>Three ways across</h2>
+  <div class="routes">
+    <article class="route"><h3>Port Marlow to Kestrel</h3><p>The main crossing. Every 45 minutes from 6:00 to 21:00.</p></article>
+    <article class="route"><h3>Kestrel to Gull Point</h3><p>A short hop to the north beaches. Summer weekends only.</p></article>
+    <article class="route"><h3>Night boat</h3><p>One late sailing at 23:15 on Fridays and Saturdays.</p></article>
+  </div>
+</div></section>
+
+<section id="fares"><div class="wrap">
+  <h2>Fares</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Ticket</th><th>One way</th><th>Return</th></tr></thead>
+    <tbody>
+      <tr><td>Adult</td><td>$9</td><td>$16</td></tr>
+      <tr><td>Child (5–15)</td><td>$4</td><td>$7</td></tr>
+      <tr><td>Bicycle</td><td>$3</td><td>$5</td></tr>
+      <tr><td>Car and driver</td><td>$34</td><td>$60</td></tr>
+    </tbody>
+  </table></div>
+  <p style="margin-top:2rem"><a class="btn" href="#contact">Book a crossing</a></p>
+</div></section>
+</main>
+
+<footer id="contact"><div class="wrap">
+  <p><b>Kestrel Island Ferry</b><br>Harbour Road, Port Marlow<br>hello@kestrelferry.example · 555-0142</p>
+  <p>This is a sample site with made-up details.</p>
+</div></footer>
+
+<script>
+(function(){
+  var dests=["Kestrel Island","Kestrel Island","Gull Point"];
+  var el=document.getElementById("board");
+  function render(){
+    var now=new Date(),mins=now.getHours()*60+now.getMinutes(),html="";
+    var next=Math.ceil((mins+1)/45)*45;
+    for(var i=0;i<4;i++){
+      var t=next+i*45,h=Math.floor(t/60)%24,m=t%60,diff=t-mins;
+      var label=diff<=10?"Boarding":"in "+diff+" min";
+      html+='<div class="row"><span class="t">'+String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+'</span><span>'+dests[i%3]+'</span><span class="m'+(diff<=10?" soon":"")+'">'+label+'</span></div>';
+    }
+    el.innerHTML=html;
+  }
+  render();setInterval(render,30000);
+})();
+</script>
+</body>
+</html>
